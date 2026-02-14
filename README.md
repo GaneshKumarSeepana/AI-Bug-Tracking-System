@@ -1,98 +1,92 @@
-# AI-Powered Bug Tracking System
+# 🚀 AI-Powered Bug Tracking System
 
-A modern bug tracking system with AI-powered bug prioritization and classification.
+### 🔗 Live Demo  
+## 👉 [AI Bug Tracking System](https://ai-bug-tracking-system-1.onrender.com)
 
-## Features
+A modern, cloud-deployed bug tracking platform that leverages **Machine Learning** to automatically classify and prioritize software bugs.
 
-- **AI-Powered Analysis**: Automatically classifies and prioritizes bugs using machine learning
-- **Role-Based Access Control**: Separate dashboards for Admins, Managers, and Developers
-- **Modern UI**: Dark theme with glassmorphism effects and smooth animations
-- **Real-time Analytics**: Charts and statistics for bug trends and team performance
+This system is designed to simulate a real-world enterprise issue tracking tool with secure role-based access and intelligent analytics.
 
-## Tech Stack
+---
 
-### Backend
-- Flask (Python web framework)
-- MongoDB (Database)
-- Scikit-learn (Machine learning)
-- PyMongo (MongoDB driver)
+## 📌 About the Project
 
-### Frontend
-- HTML5/CSS3
-- Vanilla JavaScript
-- Chart.js (Analytics visualization)
-- Font Awesome (Icons)
+The **AI-Powered Bug Tracking System** is a full-stack web application built to streamline software issue management.
 
-## Installation
+It enhances traditional bug tracking by integrating:
 
-1. Clone the repository:
-```bash
-git clone https://github.com/GaneshKumarSeepana/AI-Bug-Tracking-System.git
-cd AI-Bug-Tracking-System
-```
+- 🤖 AI-based bug classification
+- ⚡ Automatic priority prediction
+- 👥 Role-based dashboards
+- 📊 Real-time analytics and visualization
+- ☁️ Cloud deployment with MongoDB Atlas
 
-2. Create a virtual environment:
-```bash
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-```
+The system supports Admin, Manager, and Developer roles with controlled access and separate dashboards.
 
-3. Install dependencies:
-```bash
-pip install -r backend/requirements.txt
-```
+---
 
-4. Set up environment variables:
-Create a `.env` file in the root directory:
-```
-SECRET_KEY=your-secret-key-here
-MONGO_URI=mongodb://localhost:27017/bug_tracker_db
-```
+## ✨ Key Features
 
-5. Install and start MongoDB:
-- Download MongoDB Community Server from https://www.mongodb.com/try/download/community
-- Start MongoDB service
+- 🔍 AI-based Bug Type Detection
+- 🚨 Automatic Priority Assignment (Low / Medium / High / Critical)
+- 👤 Secure Role-Based Authentication
+- 📊 Analytics Dashboard with Charts
+- 🌓 Modern Dark UI with Glassmorphism
+- ☁️ Fully Cloud Hosted (Render + MongoDB Atlas)
 
-6. Run the application:
-```bash
-python backend/app.py
-```
+---
 
-7. Access the application:
-- Main app: http://127.0.0.1:5000
-- Admin login: http://127.0.0.1:5000/admin/login
+## 🛠 Technologies Used
 
-## Default Admin Credentials
+### 🔹 Backend
+- Python
+- Flask
+- MongoDB Atlas
+- Scikit-learn
+- Gunicorn (Production Server)
 
-For first-time setup, visit: http://127.0.0.1:5000/create-admin
+### 🔹 Frontend
+- HTML5
+- CSS3
+- JavaScript
+- Chart.js
+- Font Awesome
 
-This will create an admin user. **Change the default credentials in `backend/app.py` before deploying to production.**
+### 🔹 Cloud & Deployment
+- Render (Backend Hosting)
+- MongoDB Atlas (Cloud Database)
+- GitHub (Version Control)
 
-## Project Structure
+---
 
-```
-AI_Bug_Tracking_System/
-├── backend/
-│   ├── app.py              # Main Flask application
-│   ├── config.py           # Configuration
-│   └── requirements.txt    # Python dependencies
-├── templates/              # HTML templates
-├── static/                 # CSS, JS, and static assets
-├── m1/                     # Machine learning models
-└── .env                    # Environment variables (not in repo)
-```
+## 🏗 Architecture Overview
 
-## Security Notes
+- Frontend communicates with Flask backend
+- Flask handles authentication & role management
+- Machine Learning model predicts bug type & priority
+- Data stored securely in MongoDB Atlas
+- Deployed on Render with production configuration
 
-- Never commit `.env` file to version control
-- Change default admin credentials before production deployment
-- Use strong SECRET_KEY in production
-- Enable SSL/TLS for MongoDB connections in production
+---
 
-## License
+## 🔐 Security Implementation
 
-MIT License
+- Password hashing using secure methods
+- Environment variables for sensitive data
+- MongoDB Atlas IP restrictions
+- Role-based route protection
+- Production-ready configuration
 
-## Contributing
+---
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## 🎯 Project Highlights
+
+- Real-world SaaS-style application
+- Machine Learning integration in production
+- Role-Based Access Control (RBAC)
+- Cloud deployment experience
+- Clean and modern UI design
+- Scalable architecture
+
+---
+
