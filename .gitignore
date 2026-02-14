@@ -1,0 +1,37 @@
+# Environment variables
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Local database
+.local_db/
+
+# Uploads
+static/uploads/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+db_test_log.txt
+
+# Temporary scripts (these contain hardcoded credentials)
+ensure_admin.py
+create_admin_now.py
+check_db.py
+backend/reset_admin.py

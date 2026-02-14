@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - BugTracker AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth_3d.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        /* Specific override for Admin Login to distinguish it */
+        .auth-card.glass {
+            background: rgba(20, 0, 0, 0.7);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+        }
+
+        .btn-submit:hover {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+        }
+
+        .auth-container::before {
+            background: radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.15), transparent 70%);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="canvas-container"></div>
+
+    <div class="auth-container">
+        <div class="auth-card glass">
+            <div class="card-header">
+                <i class="fas fa-user-shield logo-icon" style="color: #ef4444;"></i>
+                <h2>Admin Portal</h2>
+                <p>Secure Access for Administrators</p>
+            </div>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <form action="{{ url_for('admin_login') }}" method="POST">
+                <div class="form-group">
+                    <label for="username">Admin Username</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-user-shield"></i>
+                        <input type="text" id="username" name="username" placeholder="Enter admin username" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" placeholder="Enter admin password"
+                            required>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">
+                        <span>Access Dashboard</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </form>
+
+            <div class="card-footer">
+                <p><a href="{{ url_for('login') }}" style="color: #94a3b8;">Back to Regular Login</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/three_scene.js') }}"></script>
+    <script>
+        initAuthScene();
+    </script>
+</body>
+
+</html>

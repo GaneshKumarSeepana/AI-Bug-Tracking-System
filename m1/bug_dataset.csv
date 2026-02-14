@@ -1,0 +1,9 @@
+description,type,priority
+button not clickable on login page,UI,Medium
+api returns 500 error on submit,Backend,High
+sql injection possible in login,Security,Critical
+page loads slowly with many users,Performance,High
+text overlapping on mobile screen,UI,Low
+password stored in plain text,Security,Critical
+server crashes when uploading file,Backend,High
+minor alignment issue in footer,UI,Low

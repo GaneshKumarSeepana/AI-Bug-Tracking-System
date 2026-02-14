@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Submit Bug{% endblock %}
+
+{% block content %}
+<div class="card shadow p-4 col-md-8 mx-auto">
+    <h3 class="mb-3">Submit Bug</h3>
+
+    <form method="POST">
+        <input
+            class="form-control mb-3"
+            name="title"
+            placeholder="Bug Title"
+            required
+        >
+
+        <textarea
+            class="form-control mb-3"
+            name="description"
+            placeholder="Describe the bug in detail"
+            rows="4"
+            required
+        ></textarea>
+
+        <button class="btn btn-dark w-100">
+            Submit Bug (AI Powered)
+        </button>
+    </form>
+</div>
+{% endblock %}

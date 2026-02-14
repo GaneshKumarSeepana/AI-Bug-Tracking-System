@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bug Reports - BugTracker AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-bug"></i> BugTracker AI
+            </div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('admin_dashboard') }}"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                <li><a href="{{ url_for('admin_users') }}"><i class="fas fa-users-cog"></i> User Management</a></li>
+                <li><a href="{{ url_for('admin_bugs') }}" class="active"><i class="fas fa-tasks"></i> Bug Reports</a>
+                </li>
+                <li><a href="{{ url_for('admin_reports') }}"><i class="fas fa-file-export"></i> Reports & Export</a>
+                </li>
+                <li><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="dashboard-wrapper">
+                <header class="top-bar">
+                    <h2>Bug Reports</h2>
+                    <div class="user-profile">
+                        <span>Admin</span>
+                        <div class="user-avatar">AD</div>
+                    </div>
+                </header>
+
+                <div class="table-container">
+                    <h3>System Bugs</h3>
+                    <br>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Reported By</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if bugs %}
+                            {% for bug in bugs %}
+                            <tr>
+                                <td>{{ bug.title }}</td>
+                                <td>{{ bug.reported_by }}</td>
+                                <td><span class="badge badge-high">{{ bug.priority }}</span></td>
+                                <td>{{ bug.status }}</td>
+                                <td>
+                                    <a href="{{ url_for('view_bug', bug_id=bug._id) }}" class="action-btn"
+                                        style="display:inline-block; text-decoration:none; margin-right: 5px;">View</a>
+                                    <form action="{{ url_for('delete_bug', bug_id=bug._id) }}" method="POST"
+                                        style="display:inline-block;"
+                                        onsubmit="return confirm('Are you sure you want to delete this bug?');">
+                                        <button type="submit" class="action-btn"
+                                            style="background: #ef4444; border: none; color: white; cursor: pointer;">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            {% else %}
+                            <tr>
+                                <td colspan="5" style="text-align:center;">No bugs found.</td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

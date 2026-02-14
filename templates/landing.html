@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BugTracker AI - Intelligent Issue Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+
+<body>
+    <div id="canvas-container"></div>
+
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-bug"></i> BugTracker <span class="highlight">AI</span>
+        </div>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#solutions">Solutions</a>
+            <a href="#pricing">Pricing</a>
+            <a href="{{ url_for('login') }}" class="btn-login">Login</a>
+            <a href="{{ url_for('signup') }}" class="btn-signup">Get Started</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Intelligent Bug Tracking <br>for Modern Teams</h1>
+            <p>Leverage AI to automatically prioritize, classify, and assign issues. Streamline your development
+                workflow with our 3D-accelerated dashboard.</p>
+            <div class="cta-group" style="justify-content: center;">
+                <a href="{{ url_for('signup') }}" class="btn-primary">Start Free Trial</a>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-item">
+                    <h3>98%</h3>
+                    <p>Accuracy in AI Triage</p>
+                </div>
+                <div class="stat-item">
+                    <h3>2.5x</h3>
+                    <p>Faster Resolution</p>
+                </div>
+                <div class="stat-item">
+                    <h3>500+</h3>
+                    <p>Enterprise Teams</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="features" class="features-section">
+        <div class="section-header">
+            <h2>Why Choose BugTracker AI?</h2>
+            <p>Our platform combines industrial-grade reliability with cutting-edge AI technology.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card glass">
+                <div class="icon-box"><i class="fas fa-brain"></i></div>
+                <h3>AI Prioritization</h3>
+                <p>Machine learning models analyze bug reports to automatically assign severity and priority levels.</p>
+            </div>
+
+            <div class="feature-card glass">
+                <div class="icon-box"><i class="fas fa-cubes"></i></div>
+                <h3>3D Analytics</h3>
+                <p>Visualize your project's health with interactive 3D data representations and topology maps.</p>
+            </div>
+
+            <div class="feature-card glass">
+                <div class="icon-box"><i class="fas fa-shield-alt"></i></div>
+                <h3>Role-Based Security</h3>
+                <p>Granular access control for Admins, Managers, and Developers ensures data integrity.</p>
+            </div>
+
+            <div class="feature-card glass">
+                <div class="icon-box"><i class="fas fa-project-diagram"></i></div>
+                <h3>Smart Assignment</h3>
+                <p>Automatically route issues to the right developer based on expertise and workload.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>BugTracker AI</h4>
+                <p>The future of effective software maintenance.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="#">Features</a>
+                <a href="#">Integrations</a>
+                <a href="#">Pricing</a>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="#">About Us</a>
+                <a href="#">Careers</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 BugTracker AI. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Video Modal -->
+    <div class="modal-overlay" id="videoModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeVideo()">&times;</button>
+            <iframe id="videoFrame" width="100%" height="100%" src="" title="Demo Video" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/three_scene.js') }}"></script>
+    <script>
+        // Initialize simple background scene for landing page
+        initLandingScene();
+
+        // Video Modal Logic (Kept invisible for now as button is removed)
+        const modal = document.getElementById('videoModal');
+        const videoFrame = document.getElementById('videoFrame');
+
+        function closeVideo() {
+            modal.classList.remove('active');
+            videoFrame.src = ""; // Stop video
+        }
+
+        // Close on clicking outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeVideo();
+            }
+        });
+    </script>
+</body>
+
+</html>

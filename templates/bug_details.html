@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bug Details - BugTracker AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <style>
+        .detail-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 1rem;
+        }
+
+        .detail-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-label {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .detail-value {
+            color: #f8fafc;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .attachment-box {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-bug"></i> BugTracker AI
+            </div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('admin_dashboard') }}"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                <li><a href="{{ url_for('admin_users') }}"><i class="fas fa-users-cog"></i> User Management</a></li>
+                <li><a href="{{ url_for('admin_bugs') }}" class="active"><i class="fas fa-tasks"></i> Bug Reports</a>
+                </li>
+                <li><a href="{{ url_for('admin_reports') }}"><i class="fas fa-file-export"></i> Reports & Export</a>
+                </li>
+                <li><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="dashboard-wrapper">
+                <header class="top-bar">
+                    <h2>Bug Details: #{{ bug._id }}</h2>
+                    <div class="user-profile">
+                        <span>{{ session.user.role }}</span>
+                        <div class="user-avatar">AD</div>
+                    </div>
+                </header>
+
+                <div class="detail-card">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 2rem;">
+                        <div>
+                            <h1 style="font-size: 2rem; margin-bottom: 0.5rem;">{{ bug.title }}</h1>
+                            <span class="badge badge-{{ bug.priority|lower }}">{{ bug.priority }}</span>
+                            <span class="badge badge-medium">{{ bug.type }}</span>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem;">
+                            <!-- Delete Button (Admin Only) -->
+                            {% if session.user.role == 'Admin' %}
+                            <form action="{{ url_for('delete_bug', bug_id=bug._id) }}" method="POST"
+                                onsubmit="return confirm('Are you sure you want to delete this bug report?');">
+                                <button type="submit" class="action-btn"
+                                    style="background: #ef4444; color: white;">Delete Report</button>
+                            </form>
+                            {% endif %}
+
+                            <a href="{{ url_for('admin_bugs') }}" class="action-btn"
+                                style="background: transparent; border: 1px solid var(--glass-border);">Back</a>
+                        </div>
+                    </div>
+
+                    <div class="detail-group">
+                        <span class="detail-label">Description</span>
+                        <div class="detail-value">{{ bug.description }}</div>
+                    </div>
+
+                    <div class="detail-group">
+                        <span class="detail-label">Reported By</span>
+                        <div class="detail-value">{{ bug.reported_by }} on {{ bug.created_at.strftime('%Y-%m-%d %H:%M')
+                            }}</div>
+                    </div>
+
+                    <div class="detail-group">
+                        <span class="detail-label">Attachment</span>
+                        {% if bug.attachment %}
+                        <div class="attachment-box">
+                            <i class="fas fa-file-alt" style="font-size: 1.5rem; color: var(--primary);"></i>
+                            <div>
+                                <div style="font-weight: 500;">{{ bug.attachment }}</div>
+                                <a href="{{ url_for('uploaded_file', filename=bug.attachment) }}" target="_blank"
+                                    style="color: var(--secondary); font-size: 0.9rem;">Download / View</a>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="detail-value" style="color: var(--text-secondary); font-style: italic;">No
+                            attachments provided.</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
