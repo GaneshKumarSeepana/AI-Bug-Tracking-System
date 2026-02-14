@@ -1,1 +1,1 @@
-web: python -m gunicorn --chdir backend app:app --bind 0.0.0.0:$PORT
+web: cd backend && gunicorn app:app
